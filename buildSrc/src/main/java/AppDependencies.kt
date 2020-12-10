@@ -38,7 +38,7 @@ object AppDependencies {
     private val hilt = "com.google.dagger:hilt-android:${Versions.daggerHilt}"
     private val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.daggerHilt}"
     private val hiltLifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}"
-    private val hiltWork = "androidx.hilt:hilt-work:1.0.0-alpha02${Versions.hilt}"
+    private val hiltWork = "androidx.hilt:hilt-work:${Versions.hilt}"
 
 
     val appLibraries = arrayListOf<String>().apply {
