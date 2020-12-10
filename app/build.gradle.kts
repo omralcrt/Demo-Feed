@@ -2,8 +2,11 @@ import org.jetbrains.kotlin.gradle.tasks.*
 
 plugins {
     id("com.android.application")
-    kotlin("android")
-    kotlin("android.extensions")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("kotlin-android-extensions")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -35,6 +38,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
+
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "1.8"
@@ -48,4 +55,5 @@ android {
 
 dependencies {
     implementation(AppDependencies.appLibraries)
+    kapt(AppDependencies.kapts)
 }
