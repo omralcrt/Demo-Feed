@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="black_60">#99000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_50">#FAFAFA</color>
     <color name="white_0">#00ffffff</color>
@@ -9,8 +10,10 @@
 
     <color name="cod_gray">#171717</color>
     <color name="cod_gray_40">#66171717</color>
+    <color name="cod_gray_80">#CC171717</color>
     <color name="electric_violet">#9923ff</color>
     <color name="manatee">#8f92a1</color>
     <color name="manatee_20">#338F92A1</color>
     <color name="warm_grey_20">#33979797</color>
+    <color name="dark_violet">#34004f</color>
 </resources>

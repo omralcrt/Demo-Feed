@@ -8,4 +8,7 @@
     <string name="feed_holder_more_mention_count">+%1$d</string>
     <string name="feed_featured_title">Featured</string>
     <string name="feed_featured_show_all_title">SHOW ALL</string>
+
+    <string name="feed_mention_close_title">Close</string>
+    <string name="feed_mention_follow">Follow</string>
 </resources>

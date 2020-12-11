@@ -11,6 +11,18 @@
         android:name="com.omralcorut.demofeed.ui.home.HomeFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_feed_to_mentionBs"
+            app:destination="@id/mentionBs" />
     </fragment>
+
+    <dialog
+        android:id="@+id/mentionBs"
+        android:name="com.omralcorut.demofeed.ui.bottom_sheets.mention.MentionBottomSheetFragment"
+        tools:layout="@layout/fragment_mention_bottom_sheet">
+        <argument
+            android:name="list"
+            app:argType="com.omralcorut.demofeed.models.Mention[]"/>
+    </dialog>
 
 </navigation>

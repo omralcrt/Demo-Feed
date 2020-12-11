@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.omralcorut.demofeed.R
 import com.omralcorut.demofeed.databinding.FragmentHomeBinding
 import com.omralcorut.demofeed.models.Mention
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +41,8 @@ class HomeFragment : Fragment() {
         homeEpoxyController =
             HomeEpoxyController(object : HomeEpoxyController.HomeEpoxyAdapterCallbacks {
                 override fun feedMentionsClick(mentions: List<Mention>) {
-
+                    val bundle = bundleOf("list" to mentions.toTypedArray())
+                    findNavController().navigate(R.id.action_feed_to_mentionBs, bundle)
                 }
             })
 

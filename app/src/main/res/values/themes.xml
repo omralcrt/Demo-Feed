@@ -14,10 +14,21 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
+
     </style>
 
     <style name="Theme.DemoFeed.Splash" parent="Theme.DemoFeed">
         <item name="android:windowBackground">@drawable/bg_splash_screen</item>
     </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+
 
 </resources>
