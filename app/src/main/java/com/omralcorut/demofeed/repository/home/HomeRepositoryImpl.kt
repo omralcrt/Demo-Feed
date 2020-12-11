@@ -13,5 +13,5 @@ class HomeRepositoryImpl @Inject constructor(
 
     override suspend fun getFeatures() = api.getFeatured().body()
 
-    override suspend fun getTimeline() = api.getTimeline(1).body()
+    override suspend fun getTimeline(page: Int) = api.getTimeline(page).body()
 }

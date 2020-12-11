@@ -5,5 +5,5 @@ import com.omralcorut.demofeed.models.Timeline
 
 interface HomeRepository {
     suspend fun getFeatures(): Feature?
-    suspend fun getTimeline(): Timeline?
+    suspend fun getTimeline(page: Int): Timeline?
 }

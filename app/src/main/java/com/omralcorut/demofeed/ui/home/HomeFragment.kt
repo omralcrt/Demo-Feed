@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.omralcorut.demofeed.databinding.FragmentHomeBinding
+import com.omralcorut.demofeed.models.Mention
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,12 +30,18 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         setAdapter()
+        setRecyclerViewScroll()
         viewModelObserver()
         return binding.root
     }
 
     private fun setAdapter() {
-        homeEpoxyController = HomeEpoxyController()
+        homeEpoxyController =
+            HomeEpoxyController(object : HomeEpoxyController.HomeEpoxyAdapterCallbacks {
+                override fun feedMentionsClick(mentions: List<Mention>) {
+
+                }
+            })
 
         homeEpoxyController.isDebugLoggingEnabled = true
         binding.recyclerViewFeed.layoutManager = LinearLayoutManager(context)
@@ -41,9 +49,37 @@ class HomeFragment : Fragment() {
     }
 
     private fun viewModelObserver() {
-        homeViewModel.feedList.observe(viewLifecycleOwner, {
-            homeEpoxyController.setData(it)
-            binding.recyclerViewFeed.layoutManager?.scrollToPosition( 0)
+        homeViewModel.featureDetails.observe(viewLifecycleOwner, {
+            homeEpoxyController.setData(homeViewModel.featureDetails.value,
+                homeViewModel.timelineDetails.value,
+                homeViewModel.loadingModel.value?.loading == HomeViewModel.Loading.LOADING)
+            binding.recyclerViewFeed.layoutManager?.scrollToPosition(0)
+        })
+
+        homeViewModel.loadingModel.observe(viewLifecycleOwner, {
+            homeEpoxyController.setData(
+                homeViewModel.featureDetails.value,
+                homeViewModel.timelineDetails.value,
+                it.loading == HomeViewModel.Loading.LOADING
+            )
+        })
+    }
+
+    private fun setRecyclerViewScroll() {
+        binding.recyclerViewFeed.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManger = binding.recyclerViewFeed.layoutManager as LinearLayoutManager
+                val visibleItemCount = layoutManger.childCount
+                val totalItemCount = layoutManger.itemCount
+                val firstVisibleItemPosition = layoutManger.findFirstVisibleItemPosition()
+
+                if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                    && firstVisibleItemPosition >= 0
+                ) {
+                    homeViewModel.fetchNextPage()
+                }
+            }
         })
     }
 

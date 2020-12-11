@@ -5,29 +5,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import coil.load
-import com.airbnb.epoxy.EpoxyAttribute
-import com.airbnb.epoxy.EpoxyHolder
-import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.airbnb.epoxy.*
 import com.omralcorut.demofeed.R
-import com.omralcorut.demofeed.models.Feature
 import com.omralcorut.demofeed.models.FeatureDetail
-import com.omralcorut.demofeed.models.Timeline
 import com.omralcorut.demofeed.models.TimelineDetail
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
 @EpoxyModelClass(layout = R.layout.holder_feature_title)
-abstract class FeatureTitleEpoxyModel : EpoxyModelWithHolder<FeatureTitleEpoxyModel.Holder>() {
-
-    override fun bind(holder: Holder) {
-    }
-
-    class Holder : EpoxyHolder() {
-        override fun bindView(itemView: View) {
-        }
-    }
-}
+abstract class FeatureTitleEpoxyModel : EpoxyModel<View>()
 
 @EpoxyModelClass(layout = R.layout.holder_feature)
 abstract class FeatureEpoxyModel : EpoxyModelWithHolder<FeatureEpoxyModel.Holder>() {
@@ -62,6 +48,9 @@ abstract class FeedEpoxyModel : EpoxyModelWithHolder<FeedEpoxyModel.Holder>() {
     @EpoxyAttribute
     var timelineDetail: TimelineDetail? = null
 
+    @EpoxyAttribute
+    lateinit var clickListener: View.OnClickListener
+
     override fun bind(holder: Holder) {
         holder.photoImageView.load(timelineDetail?.imageUrl)
         holder.titleTextView.text = timelineDetail?.title
@@ -73,7 +62,8 @@ abstract class FeedEpoxyModel : EpoxyModelWithHolder<FeedEpoxyModel.Holder>() {
             timeInMillis =
                 timelineDetail?.date?.toLong()!!
         })
-        when(timelineDetail?.mentions?.size) {
+        holder.mentionLayout.setOnClickListener(clickListener)
+        when (timelineDetail?.mentions?.size) {
             0 -> holder.mentionLayout.visibility = View.GONE
             1 -> {
                 holder.mentionLayout.visibility = View.VISIBLE
@@ -146,18 +136,5 @@ abstract class FeedEpoxyModel : EpoxyModelWithHolder<FeedEpoxyModel.Holder>() {
     }
 }
 
-abstract class HomeEpoxyModel(
-    open val type: HomeEpoxyType
-)
-
-data class HomeFeatureEpoxyModel(
-    val featured: Feature? = null
-) : HomeEpoxyModel(HomeEpoxyType.Feature)
-
-data class HomeFeedEpoxyModel(
-    val timeline: Timeline? = null
-) : HomeEpoxyModel(HomeEpoxyType.Feed)
-
-enum class HomeEpoxyType {
-    Feature, Feed
-}
+@EpoxyModelClass(layout = R.layout.holder_loading)
+abstract class LoadMoreView : EpoxyModel<View>()
