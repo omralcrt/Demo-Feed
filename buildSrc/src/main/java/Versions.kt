@@ -22,4 +22,16 @@ object Versions {
 
     val hilt = "1.0.0-alpha02"
 
+    val epoxy = "4.3.1"
+
+    val paging = "3.0.0-alpha10"
+
+    val cardView = "1.0.0"
+
+    val coil = "1.1.0"
+
+    val circleImageView = "3.1.0"
+
+    val prettyTime = "4.0.4.Final"
+
 }

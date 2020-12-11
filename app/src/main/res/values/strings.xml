@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Demo Feed</string>
+
+    <string name="toolbar_demo">DEMO</string>
+    <string name="toolbar_feed">FEED</string>
+
+    <string name="feed_holder_country_count">%1$d COUNTRIES</string>
+    <string name="feed_holder_more_mention_count">+%1$d</string>
+    <string name="feed_featured_title">Featured</string>
+    <string name="feed_featured_show_all_title">SHOW ALL</string>
 </resources>

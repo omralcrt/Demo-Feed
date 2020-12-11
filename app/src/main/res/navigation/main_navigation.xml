@@ -8,9 +8,9 @@
 
     <fragment
         android:id="@+id/feed"
-        android:name="com.omralcorut.demofeed.ui.feed.FeedFragment"
+        android:name="com.omralcorut.demofeed.ui.home.HomeFragment"
         android:label="fragment_feed"
-        tools:layout="@layout/fragment_feed">
+        tools:layout="@layout/fragment_home">
     </fragment>
 
 </navigation>

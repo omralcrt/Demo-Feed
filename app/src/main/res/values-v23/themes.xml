@@ -1,5 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
     <style name="Theme.DemoFeed" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
@@ -14,10 +15,6 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
-
-    <style name="Theme.DemoFeed.Splash" parent="Theme.DemoFeed">
-        <item name="android:windowBackground">@drawable/bg_splash_screen</item>
-    </style>
-
 </resources>

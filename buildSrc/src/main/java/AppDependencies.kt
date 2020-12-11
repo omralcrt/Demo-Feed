@@ -40,6 +40,26 @@ object AppDependencies {
     private val hiltLifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}"
     private val hiltWork = "androidx.hilt:hilt-work:${Versions.hilt}"
 
+    //epoxy
+    private val epoxy = "com.airbnb.android:epoxy:${Versions.epoxy}"
+    private val epoxyProcessor = "com.airbnb.android:epoxy-processor:${Versions.epoxy}"
+    private val epoxyPaging = "com.airbnb.android:epoxy-paging:${Versions.epoxy}"
+
+    //paging
+    private val paging = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
+
+    //cardview
+    private val cardView = "androidx.cardview:cardview:${Versions.cardView}"
+
+    //coil
+    private val coil = "io.coil-kt:coil:${Versions.coil}"
+
+    //circleImageView
+    private val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+
+    //prettyTime
+    private val prettyTime = "org.ocpsoft.prettytime:prettytime:${Versions.prettyTime}"
+
 
     val appLibraries = arrayListOf<String>().apply {
         add(kotlinStdLib)
@@ -61,6 +81,13 @@ object AppDependencies {
         add(hilt)
         add(hiltLifecycle)
         add(hiltWork)
+        add(epoxy)
+        add(epoxyPaging)
+        add(paging)
+        add(cardView)
+        add(coil)
+        add(circleImageView)
+        add(prettyTime)
     }
 
     val kapts = arrayListOf<String>().apply {
@@ -68,6 +95,7 @@ object AppDependencies {
         add(daggerProcessor)
         add(hiltCompiler)
         add(hiltAndroidCompiler)
+        add(epoxyProcessor)
     }
 }
 
